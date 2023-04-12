@@ -5,7 +5,7 @@ function PostTable() {
 
   useEffect(() => {
     // Fetch posts from API
-    fetch('https://jsonplaceholder.typicode.com/posts')
+    fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
       .then(posts => setPosts(posts));
   }, []);
@@ -24,18 +24,20 @@ function PostTable() {
     <table>
       <thead>
         <tr>
-          <th>Title</th>
-          <th>Body</th>
-          <th>Remove</th>
+          <th>Sno.</th>
+          <th>Name</th>
+          <th>E-mail</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {posts.map(post => (
+        {posts.map((post,index) => (
           <tr key={post.id}>
-            <td>{post.title}</td>
-            <td>{post.body}</td>
+            <td>{index+1}</td>
+            <td>{post.name}</td>
+            <td>{post.email}</td>
             <td>
-              <button onClick={() => handleRemovePost(post.id)}>Remove</button>
+              <button onClick={() => handleRemovePost(post.id)}>❌</button>
             </td>
           </tr>
         ))}
